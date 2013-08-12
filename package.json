@@ -1,6 +1,6 @@
 {
   "name": "jacc",
-  "private": true,
+  "private": false,
   "version": "0.0.1",
   "description": "Just another cloud in the cloud",
   "homepage": "https://github.com/colmsjo/jacc",
