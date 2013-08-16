@@ -18,6 +18,14 @@ sudo apt-get install -y lxc-docker
 
 
 #
+# Script that print IP adress of eth0
+#
+
+sudo cp ./ip_addr.sh /usr/local/bin
+sudo cp ./etc/bash.bashrc /etc
+
+
+#
 # Nifty tools
 #
 
