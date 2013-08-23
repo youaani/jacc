@@ -71,6 +71,7 @@
     var  _imageID      = "",
         _containerID   = "",
         _name          = "",
+        _path          = "",
         _containerPort,
         _use_export    = false,
         _settings      = {};
@@ -431,7 +432,7 @@
           function(req) {
             // write data to the http.ClientRequest (which is a stream) returned by http.request() 
             var fs = require('fs');
-            var stream = fs.createReadStream('webapp.tar');
+            var stream = fs.createReadStream(this._path + 'webapp.tar');
 
             // Close the request when the stream is closed
             stream.on('end', function() {
@@ -756,6 +757,7 @@
         this._name          = argv.name;
         this._containerPort = argv.port;
         this._use_export    = argv.use_export;
+        this._path          = argv.path;
 
         async.series([
             // Delete the container and image if it already exists
@@ -874,8 +876,8 @@
             break;
 
         case "help":
-            console.log('--cmd push --name=www.example.com --port=8080: webapp.tar in the current directory will be deployed to the cloud');
-            console.log('--cmd status --name=XXX: show logs for container');
+            console.log('--cmd push --name=www.example.com --port=8080 [--path=/path_to_webapp/]: webapp.tar in the current directory (or the path specified) will be deployed to the cloud');
+            console.log('--cmd status [--name=XXX]: show logs for container or overall status for all containers');
             console.log('--help: show this message');
             break;
 
