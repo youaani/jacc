@@ -46,9 +46,9 @@ used: `/usr/lib/node_modules/jacc/`
 
  * Copy jacc_config.json.template to jacc_config.json and edit the settings if necesary.
  * Copy hipache_config.json.template to hipache_config.json and edit the settings if necesary.
+ * Goto node_modules/redis-dns and copy redis-dns.json.template redis-dns.json
 
-
-If you already have docker, hipache and node installed then just do `sudo npm install --production -g`
+If you already have docker, then just do `sudo npm install --production -g`
 
 
 ## AWS EC2
