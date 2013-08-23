@@ -22,7 +22,8 @@
     "async":"0.2.9",
     "helpersjs" : "0.1.5",
     "nconf" : "0.6.7",
-    "prettyjson" : "0.8.1"
+    "prettyjson" : "0.8.1",
+    "forever" : "0.10.8"
   },
   "devDependencies" : {
     "grunt": "*",
