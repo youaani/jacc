@@ -13,6 +13,7 @@ MAINTAINER Jonas Colmsjö "jonas@gizur.com"
 
 
 # sudo will complain about unknown host otherwise
+RUN echo "127.0.0.1\tlocalhost" >> /etc/hosts
 RUN echo "127.0.0.1\t`hostname`" >> /etc/hosts
 
 # make sure the package repository is up to date
@@ -43,17 +44,11 @@ RUN if [ -d /var/run/postgresql ]; then rm -rf /var/run/postgresql; fi
 RUN mkdir -p /var/run/postgresql
 RUN chown -R postgres:postgres /var/run/postgresql
 
-#RUN su postgreq -c "/etc/init.d/postgresql restart"
-
 
 # Create postgres user for OpenERP
-#RUN su postgres -c "createuser --createdb --username postgres --no-createrole -s openerp"
+ADD . /src
+RUN /src/init.sh
 
-# Set password to 'postgres' for openerp user
-#RUN su postgres -c "echo alter role openerp with password \'postgres\'\; |psql template1"
-
-# Show the users installed (just for debugging)
-#RUN su postgres -c 'echo "SELECT rolname FROM pg_roles;\q"|psql'
 
 
 #

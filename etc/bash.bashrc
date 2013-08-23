@@ -63,4 +63,4 @@ if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-no
 	}
 fi
 
-alias docker='docker -H=tcp://`ip_addr.sh`:4243'
+alias docker='docker -H=tcp://127.0.0.1:4243'

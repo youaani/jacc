@@ -4,3 +4,4 @@
 CREATE ROLE openerp WITH SUPERUSER LOGIN PASSWORD 'openerp';
 
 SELECT rolname FROM pg_roles;
+
