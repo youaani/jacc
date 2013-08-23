@@ -24,7 +24,8 @@ cd tests
 ../jacc.js --cmd push --name=app1.jacc.local --port=8080
 ```
 
-Make sure that hipache is running, typically like this `sudo /usr/lib/node_modules/jacc/bin/start_hipache`
+hipache and redis-dns needs to be running. For ubuntu, copy the init scripts in `etc/init` to
+`/etc/init` and do `sudo service hipahce start` and `sudo service redis-dns start`.
 
 
 Installation
@@ -41,14 +42,13 @@ Rebooting is needed since a kernel upgrade is performed.
 
 It is also be possible to run `bootstrap.sh` followed by ``bootstrap2.sh` in any Ubuntu machine.
 
-Then goto the folder where npm installs the modules. This is here if the vagrant file above was
-used: `/usr/lib/node_modules/jacc/`
+If you already have docker, then just do `sudo npm install --production -g`
+
+Then goto the folder where npm installs the modules, on ubuntu it's in: `/usr/lib/node_modules/jacc/`
 
  * Copy jacc_config.json.template to jacc_config.json and edit the settings if necesary.
  * Copy hipache_config.json.template to hipache_config.json and edit the settings if necesary.
  * Goto node_modules/redis-dns and copy redis-dns.json.template redis-dns.json
-
-If you already have docker, then just do `sudo npm install --production -g`
 
 
 ## AWS EC2
