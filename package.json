@@ -1,19 +1,19 @@
 {
-  "name": "my_sandbox",
+  "name": "jacc",
   "private": false,
   "version": "0.0.1",
-  "description": "My sandbox",
-  "homepage": "https://github.com/colmsjo/develvm",
+  "description": "Just another Cloud in the Cloud",
+  "homepage": "https://github.com/colmsjo/jacc",
   "repository": {
     "type": "git",
-    "url": "https://github.com/colmsjo/develvm.git"
+    "url": "https://github.com/colmsjo/jacc.git"
   },
   "bugs": {
-    "url": "https://github.com/colmsjo/develvm/issues"
+    "url": "https://github.com/colmsjo/jacc/issues"
   },
   "author": "Jonas Colmsjö <jonas@gizur.com>",
-  "main": "./build/build.js",
-  "bin": "./jacc.js",
+  "main": "./build/jacc.js",
+  "bin": "./jacc.sh",
   "dependencies": {
     "hipache": "0.2.4",
     "redis-dns": "0.0.1",

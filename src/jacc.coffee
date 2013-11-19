@@ -168,8 +168,6 @@ exports.create = () ->
 			(image, fn) =>
 				this._redis("get", [image], (res) =>
 
-					console.log('_buildHipacheConfig image: '+image + ' res:'+res)
-
 					# decomposing, just to make sure things are ok
 					{URL, internal_port, DNS} = JSON.parse(res)
 
