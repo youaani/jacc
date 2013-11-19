@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          './build/jacc.js': ['./src/app3.coffee']
+          './build/jacc.js': ['./src/*.coffee']
         }
       },
       compile2: {
