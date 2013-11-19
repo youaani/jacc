@@ -1,6 +1,14 @@
 Jacc - Just Another Cloud in the Cloud
 ======================================
 
+Jacc targets the following user case:
+
+ * web applications running behind a load balancing proxy
+ * efficient hosting of several compentents, typically a cluser of application server, caching servers etc. A database cluster can also be hosted or use a DBaaS with backups etc. pre-configured
+ * ready for production use with the redundance and reliability this requires
+
+Jacc is NOT a Heroku type architeture with support for remote deployment. You are required to login to the server that hosts the web applications.
+
 Jacc is a private cloud built from standard components such as docker.io, hipache and redis-dns. Docker is a linux containers architecture and hipache a high perforamnce web proxy. redis-dns provides an internal DNS between containers. Docker and hipache are provided by the team behind the dotCloud service.
 
 The goal is to provide an architecture suitable for hosting a variety of components on a limited amount of server. Examples of components could be web applications build in PHP/Java/NodeJS/Ruby/Python etc. It could also include databases, caching systems, queue management etc. The limit is really only what's runs on the Linux flavours that docker supports.
@@ -19,6 +27,9 @@ Pre-requiresites:
 
 Development
 ------------
+
+NOTE: The overall design principle for Jacc is to re-use what's already out there. Don't re-invent the wheel.
+
 
 An easy way to get started quickly is to create a virtual machine using Vagrant. This repo has everything you need: https://github.com/colmsjo/docker. You can of course setup docker and the other required modules yourself.
 

@@ -17,7 +17,6 @@ DOC = $(DOCSRC:%.js=docs/%.html)
 
 all: install build test run
 
-#build:	./src/build.js
 build:
 	git pull
 	grunt
@@ -38,8 +37,6 @@ doc: $(DOC)
 docs/%.html: %.js
 	./node_modules/.bin/doccoh ./src/*.js
 
-# Removed dependency on build since it takes too long, do make build manually when needed
-# test: build
 test:	build
 	grunt nodeunit
 
