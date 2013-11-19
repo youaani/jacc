@@ -1,0 +1,4 @@
+export JACC_TEST_IMAGE=$DOCKER_MYLAMP
+export JACC_TEST_URL="app1.jacc.local"
+export JACC_TEST_PORT="80"
+export JACC_TEST_DNS="app1.local"

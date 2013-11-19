@@ -1,0 +1,43 @@
+{
+  "name": "my_sandbox",
+  "private": false,
+  "version": "0.0.1",
+  "description": "My sandbox",
+  "homepage": "https://github.com/colmsjo/develvm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colmsjo/develvm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/colmsjo/develvm/issues"
+  },
+  "author": "Jonas Colmsjö <jonas@gizur.com>",
+  "main": "./build/build.js",
+  "bin": "./jacc.js",
+  "dependencies": {
+    "hipache": "0.2.4",
+    "redis-dns": "0.0.1",
+    "redis": "0.8.4",
+    "node-docker": "*",
+    "docker.io": "*",
+    "optimist": "*",
+    "underscore": "*",
+    "helpersjs": "*"
+  },
+  "devDependencies" : {
+    "grunt": "*",
+    "async": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-nodeunit": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-coffee": "*",
+    "doccoh":"0.4.1"
+  },
+  "keywords": [
+    "Sandbox"
+  ],
+  "license": "WTFPL",
+  "preferGlobal": false
+}
