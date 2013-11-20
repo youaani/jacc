@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     nodeunit: {
-      all: ['test/*.js']
+      all: ['./build/test_*.js']
     },
     watch: {
       files: '<config:lint.files>',
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
       },
       build: {
         src: ['./build/jacc.js'],
-        dest: 'build/<%= pkg.name %>.min.js'
+        dest: './build/<%= pkg.name %>.min.js'
       }
     },
     coffee: {
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
       },
       compile2: {
         files: {
-          './test/testCoffee.js': ['./test/*.coffee']
+          './build/test_jacc.js': ['./test/*.coffee']
         }
       }
     }

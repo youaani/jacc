@@ -23,6 +23,14 @@ Pre-requiresites:
  * redis
  * NodeJS (preferabley managed with nvm)
  * make - for development only
+ * Python
+
+
+Installation:
+
+ 1. Clone (or download) this repo into a new folder. First install supervisord, either using a linux package manager or simply with python package manager: `pip install supervisor`
+ 1. Update the IP adress in the `./etc/redis-dns-config.json` with the IP adress of the docker bridge.
+ 1. Update the `command` section in the file `./etc/supervisor/hipache.conf` with the path to the jacc installation
 
 
 Development
