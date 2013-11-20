@@ -38,6 +38,12 @@ Installation:
  1. Check that hipache and redis-dns started with `sudo supervisorctl status`
 
 
+Setup containers:
+
+  1. Create a supervisor configuration file copying the template  `sudo cp ./etc/supervisor/docker-container.conf.template /etc/supervisor/conf.d/docker-XXX.conf`
+  1. Update the configuration file the settings for the container to run
+
+
 Development
 ------------
 
