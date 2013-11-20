@@ -40,8 +40,8 @@ Installation:
 
 Setup containers:
 
-  1. Create a supervisor configuration file copying the template  `sudo cp ./etc/supervisor/docker-container.conf.template /etc/supervisor/conf.d/docker-XXX.conf`
-  1. Update the configuration file the settings for the container to run
+ 1. Do `./jacc.sh add <IMAGE_ID> <URL> <internal port> <DNS>` followed by `./jacc.sh update` to add an image and start a container. hipache and redis-dns configuration will be updated at the same time
+  * STARTING CONTAINERS HAVE NOT BEEN IMPLEMENTED YET, START MANUALLY WITH `docker run -d -dns=IP IMAGE_ID`
 
 
 Development
