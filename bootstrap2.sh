@@ -18,18 +18,27 @@ sudo apt-get install -y lxc-docker
 
 
 #
-# Script that print IP adress of eth0
-#
-
-sudo cp ./ip_addr.sh /usr/local/bin
-sudo cp ./etc/bash.bashrc /etc
-
-
-#
 # Nifty tools
 #
 
 sudo apt-get install -y git unzip s3cmd curl dkms
+
+# Init vbox guest additions
+# NOTE: Should avoid for AWS (need to figure out how)
+sudo /etc/init.d/vboxadd setup
+
+#
+# Install local docker registry
+#
+
+# Currently not used
+#echo DOCKER_INDEX_URL="http://0.0.0.0:5000/" >> ~/.profile
+
+#git clone https://github.com/dotcloud/docker-registry.git
+#cd docker-registry && cp config_sample.yml config.yml
+#pip install -r requirements.txt
+#./wsgi.py &
+#cd ..
 
 
 #
@@ -50,6 +59,18 @@ sudo apt-get install -y nodejs
 sudo apt-get install -y coffeescript
 
 
+#
+# Install PHP
+#
+
+sudo apt-get install php5-cli php5-curl -y
+
+#
+# Install hipache (reverse proxy developed by dotcloud)
+#
+
+sudo npm install hipache -g
+
 
 #
 # Install grunt, used for nodejs development
@@ -58,9 +79,18 @@ sudo apt-get install -y coffeescript
 sudo npm install grunt grunt-cli -g
 
 
+#
+# Local name server, used for development and testing purposes
+#
+
+sudo npm install -g appload-dns
+
+# Use the local nameserver and then google's
+sudo sh -c 'echo "dns-nameservers localhost 8.8.8.8" >> /etc/network/interfaces'
+
 
 #
-# Install redis, used by hipache and redis-dns
+# Install redis, used by hipache
 #
 
 sudo apt-get install -y redis-server

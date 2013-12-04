@@ -3,33 +3,37 @@ Jacc - Just Another Cloud in the Cloud
 
 Lighweight linux containers are used to build a private cloud. Booting a new container is easy
 and is done in a few seconds. Create a tar archive named webapp.tar containing the code and a
-Dockerfile in the root and then run `/path_to_jacc/jacc.js --cmd push --name=www.mydomain.com --port=80`.
+Dockerfile in the root and then run `jacc --cmd push --name=www.mydomain.com --port=80`.
 
 Jacc manages routing to the right webapp using the name provided. Your DNS needs to point
-to the Jacc server. For development and testing purposes can this be solved by updating the local
-hosts file.
+to the Jacc server though. 
 
-I've added this to the hosts file on my development laptop: 
-
-```
-127.0.0.1       app1.jacc.local
-127.0.0.1       app2.jacc.local
-127.0.0.1       app3.jacc.local
-```
-
-After the installation, test that everything works by deploying the webapp in tests folder:
+Test that everything works by deploying the webapp in tests folder:
 
 ```
-cd tests
-../jacc.js --cmd push --name=app1.jacc.local --port=8080
+cd /path_to_jacc/tests
+jacc --cmd push --name=app.yourdomain.com --port=8080
 ```
-
-hipache and redis-dns needs to be running. For ubuntu, copy the init scripts in `etc/init` to
-`/etc/init` and do `sudo service hipahce start` and `sudo service redis-dns start`.
 
 
 Installation
 ------------
+
+Pre-requisites:
+
+ * docker.io - see http://www.docker.io/gettingstarted/
+ * hipache - `sudo npm install hipache --production -g`. hipache requires redis to be installed.
+
+
+Jacc is installed with npm: `sudo npm install jacc --production -g`
+
+Some configuration is necessary: 
+
+ * Copy jacc_config.json.template to jacc_config.json and edit the settings if necesary.
+ * Copy hipache_config.json.template to hipache_config.json and edit the settings if necesary.
+
+
+## Development
 
 Pre-requisites:
 
@@ -40,16 +44,23 @@ The repo comes with a Vagrantfile. Installation of a test/development environmen
 `vagrant up vb`. Then reboot the machine with `vagrant halt vb` followed by ``vagrant up vb`. 
 Rebooting is needed since a kernel upgrade is performed.
 
+Then goto the folder where npm installs the modules. This is here if the vagrant file above was
+used: `/usr/lib/node_modules/jacc/`
+
+If you already have docker, hipache and node installed then just do `sudo npm install --production -g`
+
 It is also be possible to run `bootstrap.sh` followed by ``bootstrap2.sh` in any Ubuntu machine.
 
-If you already have docker, then just do `sudo npm install --production -g`
+For development and testing purposes can the DNS issue be solved by updating the local
+hosts file.
 
-Then goto the folder where npm installs the modules, on ubuntu it's in: `/usr/lib/node_modules/jacc/`
+I've added this to the hosts file on my development laptop: 
 
- * Copy jacc_config.json.template to jacc_config.json and edit the settings if necesary.
- * Copy hipache_config.json.template to hipache_config.json and edit the settings if necesary.
- * Goto node_modules/redis-dns and copy redis-dns.json.template redis-dns.json
-
+```
+127.0.0.1       app1.jacc.local
+127.0.0.1       app2.jacc.local
+127.0.0.1       app3.jacc.local
+```
 
 ## AWS EC2
 
@@ -78,18 +89,6 @@ export AWS_REGION=...
 
 vagrant up aws
 ```
-
-
-Tips and tricks
---------------
-
-Capture the current IP adress (for interface eth0): `IP_ADDR=$(ifconfig|grep -a1 eth0|grep inet|cut -c 21-29)`
-
-Then define an alias: `alias docker='docker -H=tcp://$IP_ADDR'`
-
-Now you can run: `docker ps` instead of `docker -H=tcp://xxx.x.x.x ps`
-
-
 
 
 Troubleshooting
