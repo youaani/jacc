@@ -1,0 +1,8 @@
+{
+  "dns_interface" : "172.17.42.1",
+  "dns_port" : 53,
+  "dns_zone" : "local",
+  "redis_host" : "localhost",
+  "redis_port" : 6379,
+  "logging" : "warning"
+}
