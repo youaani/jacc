@@ -31,9 +31,15 @@ Installation:
  1. Clone (or download) this repo into a new folder.
  1. Install with `npm install`
  1. Then install supervisord, either using a linux package manager or simply with python package manager: `pip install supervisor`
+<<<<<<< HEAD
  1. Update the `command` section in the file `./etc/supervisor/hipache.conf` with the path to the jacc installation
  1. Create a redis-dns config file `cp node_modules/redis-dns/redis-dns-config.json.template node_modules/redis-dns/redis-dns-config.json`
  1. Update the IP adress in redis-dns-config.json with the IP adress of the docker bridge (do `ifconfig|grep docker`).
+=======
+ 1. Update the IP adress in the file `./etc/redis-dns-config.json` with the IP adress of the docker bridge (do `ifconfig|grep docker`).
+ 1. Update the `command` section in the file `./etc/supervisor/hipache.conf` with the path to the jacc installation
+ 1. Create a redis-dns config file `cp node_modules/redis-dns/redis-dns-config.json.template node_modules/redis-dns/redis-dns-config.json`
+>>>>>>> a6c45f7a1facf861da86439ee75538bea8113842
  1. Copy the hipache and redis-dns config files for supervisor and restart `sudo cp ./etc/supervisor/*.conf /etc/supervisor/conf.d/ && sudo supervisorctl reload`
  1. Check that hipache and redis-dns started with `sudo supervisorctl status`
 
