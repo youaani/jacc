@@ -1,5 +1,4 @@
 .vagrant
 node_modules
 venv
-build
 docs
