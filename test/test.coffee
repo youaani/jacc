@@ -17,10 +17,10 @@ exports['test_jacc'] = {
         this._helpers     = require('helpersjs').create()
         this._helpers.logging_threshold = this._helpers.logging.debug
 
-        this._id   = process.env.JACC_TEST_IMAGE
-        this._URL  = process.env.JACC_TEST_URL
-        this._port = process.env.JACC_TEST_PORT
-        this._DNS  = process.env.JACC_TEST_DNS
+        this._id   = process.env.JACC_TEST_IMAGE || "000"
+        this._URL  = process.env.JACC_TEST_URL   || "app1.jacc.local"
+        this._port = process.env.JACC_TEST_PORT  || 80
+        this._DNS  = process.env.JACC_TEST_DNS   || "app1.local"
 
 
         # setup finished
