@@ -96,9 +96,7 @@ exports.create = () ->
 			else
 				this._.each(res, 
 					(x) => 
-	                    console.log("_onJaccConfig: ")
-	                    console.log("_onJaccConfig: "+(x ? "item empty"))
-						func(x, null)
+						func(res[0], null)
 				)
 
 				endFunc() if endFunc?
