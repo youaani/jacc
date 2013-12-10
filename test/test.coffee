@@ -34,7 +34,7 @@ exports['test_jacc'] = {
     'test_docker_connection': (test) =>
         docker = require('docker.io')({ socketPath: false, host: 'http://localhost', port: '4243'})
         docker.containers.list({}, (err, res) =>
-            this._helpers.logDebug('res:'+res+' err:'+err)
+            this._helpers.logDebug('res:'+JSON.stringify(res)+' err:'+err)
             test.done()
         )
 
