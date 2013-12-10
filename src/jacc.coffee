@@ -106,7 +106,8 @@ exports.create = () ->
 					res
 
 					(item, fn) => 
-						if(item?) func(item, fn)
+						if(item?)
+							func(item, fn)
 
 					() =>
 						endFunc() if endFunc?
