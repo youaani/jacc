@@ -94,10 +94,7 @@ exports.create = () ->
 			if(res.length==0)
 				console.log("EMPTY JACC CONFIG!")
 			else
-				console.log("UNEMPTY JACC CONFIG! "+JSON.stringify(res))
-				console.log("UNEMPTY JACC CONFIG! "+res[0])
-				func("1c66fa61c287", endFunc)
-#				func(res[0], endFunc)
+				func(res[0], endFunc)
 
 #				this.async.each(
 #					res
@@ -184,6 +181,7 @@ exports.create = () ->
 
 		this._onJaccConfig( 
 			(image, fn) =>
+				console.log("IN _onJaccConfig")
 				this._redis("get", [image], (res) =>
 
 					# decomposing, just to make sure things are ok
