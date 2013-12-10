@@ -95,6 +95,8 @@ exports.create = () ->
 				console.log("EMPTY JACC CONFIG!")
 			else
 				console.log("UNEMPTY JACC CONFIG! "+JSON.stringify(res))
+				func(res[0])
+				endFunc() if endFunc?
 				this.async.each(
 					res
 
