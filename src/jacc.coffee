@@ -96,7 +96,7 @@ exports.create = () ->
 			else
 				console.log("UNEMPTY JACC CONFIG! "+JSON.stringify(res))
 				console.log("UNEMPTY JACC CONFIG! "+res[0])
-				func(res[0], endFunc)
+#				func(res[0], endFunc)
 
 #				this.async.each(
 #					res
