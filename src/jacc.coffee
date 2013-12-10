@@ -91,14 +91,17 @@ exports.create = () ->
 	# redis jacc config: jacc_images:”012345678912” -> {URL, internal_port, DNS}
 	_onJaccConfig : (func, endFunc) ->
 		this._redis( "smembers", ["images"], (res) =>
-			this.async.each(
-				res
-				(item, fn) => 
-					func(item, fn)
+			if(res.length==0)
+				console.log("EMPTY JACC CONFIG!")
+			else
+				this.async.each(
+					res
+					(item, fn) => 
+						func(item, fn)
 
-				() =>
-					endFunc() if endFunc?
-			)
+					() =>
+						endFunc() if endFunc?
+				)
 		)
 
 
@@ -120,7 +123,6 @@ exports.create = () ->
 				throw err
 
 			if (res.length==0)
-				console.log("NO RUNNING CONTAINERS")
 				endFunc() if endFunc?
 			else
 				# inspect each running container
