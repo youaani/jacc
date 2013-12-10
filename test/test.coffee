@@ -127,8 +127,11 @@ exports['test_jacc'] = {
         # There should be X tests
         test.expect(1)
 
+        console.log("MINUS")
+
         this._j._listImages(
             () =>
+                console.log("NOLL")
                 this._j._buildHipacheConfig( () =>
 
                     # Check that the hipache configuraiton is there
