@@ -187,6 +187,7 @@ exports.create = () ->
 
 					# decomposing, just to make sure things are ok
 					{URL, internal_port, DNS} = JSON.parse(res)
+					console.log("IN _onJaccConfig,redis_get_after_parse")
 
 					# Set redis-dns config, use the first IP in the list
 					this._redis( "set", [ DNS, this._runningImages[ image ][0]["IP"] ], ()=>
