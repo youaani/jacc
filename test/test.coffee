@@ -37,7 +37,7 @@ exports['test_jacc'] = {
             this._helpers.logDebug('res:'+res+' err:'+err)
             test.done()
         )
-        
+
     'test_redis_helpers': (test) =>
         # There should be X tests
         test.expect(1)
@@ -107,9 +107,8 @@ exports['test_jacc'] = {
         # There should be X tests
         test.expect(1)
 
-        test.equal(true,  true, 'jacc update')
+        test.equal(true,  true, 'jacc list images')
 
-        this._helpers.logDebug('test_listImages')
         this._j._listImages(
             () =>
                 this._helpers.logDebug('test_listImages: Running images: '+JSON.stringify(this._j._runningImages))
@@ -128,7 +127,6 @@ exports['test_jacc'] = {
         # There should be X tests
         test.expect(1)
 
-        this._helpers.logDebug('test_buildHipacheConfig')
         this._j._listImages(
             () =>
                 this._j._buildHipacheConfig( () =>
