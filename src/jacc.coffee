@@ -183,12 +183,14 @@ exports.create = () ->
 			(image, fn) =>
 				console.log("IN _onJaccConfig")
 				this._redis("get", [image], (res) =>
+					console.log("IN _onJaccConfig,redis_get")
 
 					# decomposing, just to make sure things are ok
 					{URL, internal_port, DNS} = JSON.parse(res)
 
 					# Set redis-dns config, use the first IP in the list
 					this._redis( "set", [ DNS, this._runningImages[ image ][0]["IP"] ], ()=>
+						console.log("IN _onJaccConfig,redis_get_set")
 
 						# Set hipache config
 						_key = "frontend:"+URL
