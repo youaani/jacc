@@ -181,32 +181,33 @@ exports.create = () ->
 
 		this._onJaccConfig( 
 			(image, fn) =>
-				console.log("IN _onJaccConfig")
 				this._redis("get", [image], (res) =>
-					console.log("IN _onJaccConfig,redis_get")
 
 					# decomposing, just to make sure things are ok
 					{URL, internal_port, DNS} = JSON.parse(res)
-					console.log("IN _onJaccConfig,redis_get_after_parse")
 
-					# Set redis-dns config, use the first IP in the list
-					this._redis( "set", [ DNS, this._runningImages[ image ][0]["IP"] ], ()=>
-						console.log("IN _onJaccConfig,redis_get_set")
+					if(!this._runningImages[ image ][0]?)
+						console.log("Image "+ image + "lacks running containers")
+						fn()
+					else
+						# Set redis-dns config, use the first IP in the list
+						this._redis( "set", [ DNS, this._runningImages[ image ][0]["IP"] ], ()=>
+							console.log("IN _onJaccConfig,redis_get_set")
 
-						# Set hipache config
-						_key = "frontend:"+URL
-						this._redis("del", [_key], () =>
-							this._redis("rpush", [_key, image], () =>
-								this.async.each( this._runningImages[ image ],
-									(res, fn2) =>
-										this._redis("rpush", [ _key, 'http://'+res["IP"]+
-													':'+internal_port ], 
-													fn2)
-									fn
+							# Set hipache config
+							_key = "frontend:"+URL
+							this._redis("del", [_key], () =>
+								this._redis("rpush", [_key, image], () =>
+									this.async.each( this._runningImages[ image ],
+										(res, fn2) =>
+											this._redis("rpush", [ _key, 'http://'+res["IP"]+
+														':'+internal_port ], 
+														fn2)
+										fn
+									)
 								)
 							)
 						)
-					)
 					
 				)
 
