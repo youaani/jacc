@@ -94,16 +94,23 @@ exports.create = () ->
 			if(res.length==0)
 				console.log("EMPTY JACC CONFIG!")
 			else
-				this.async.each(
-					res
-
-					(item, fn) => 
+				this._.each(res, (item) => 
 	                    console.log("_onJaccConfig: "+item if item? else "item empty")
-						func(item, fn)
-
-					() =>
-						endFunc() if endFunc?
+						func(item, null)
 				)
+
+				endFunc() if endFunc?
+
+#				this.async.each(
+#					res
+#
+#					(item, fn) => 
+#	                    console.log("_onJaccConfig: "+item if item? else "item empty")
+#						func(item, fn)
+#
+#					() =>
+#						endFunc() if endFunc?
+#				)
 
 		)
 
