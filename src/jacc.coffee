@@ -99,7 +99,7 @@ exports.create = () ->
 					res
 
 					(item, fn) => 
-	                    console.log("_onJaccConfig: "+item)
+	                    console.log("_onJaccConfig: "+item || "item empty")
 						func(item, fn)
 
 					() =>
