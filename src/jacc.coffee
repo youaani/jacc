@@ -96,7 +96,8 @@ exports.create = () ->
 			else
 				this._.each(res, 
 					(x) => 
-						func(res[0], null)
+						if(x?)
+							func(x, null)
 				)
 
 				endFunc() if endFunc?
