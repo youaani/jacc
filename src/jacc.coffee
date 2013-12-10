@@ -94,18 +94,16 @@ exports.create = () ->
 			if(res.length==0)
 				console.log("EMPTY JACC CONFIG!")
 			else
-				func(res[0], endFunc)
+				this.async.each(
+					res
 
-#				this.async.each(
-#					res
-#
-#					(item, fn) => 
-#	                    console.log("_onJaccConfig: "+item if item? else "item empty")
-#						func(item, fn)
-#
-#					() =>
-#						endFunc() if endFunc?
-#				)
+					(item, fn) => 
+	                    console.log("_onJaccConfig: "+item if item? else "item empty")
+						func(item, fn)
+
+					() =>
+						endFunc() if endFunc?
+				)
 
 		)
 
@@ -187,7 +185,7 @@ exports.create = () ->
 					{URL, internal_port, DNS} = JSON.parse(res)
 
 					if(!this._runningImages[ image ]?)
-						console.log("Image "+ image + "lacks running containers")
+						console.log("Image "+ image + " lacks running containers")
 						fn()
 					else
 						# Set redis-dns config, use the first IP in the list
