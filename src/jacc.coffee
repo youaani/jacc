@@ -119,7 +119,7 @@ exports.create = () ->
 				endFunc() if endFunc?
 				throw err
 
-			if (res==[])
+			if (res.length==0)
 				console.log("NO RUNNING CONTAINERS")
 				endFunc() if endFunc?
 			else
