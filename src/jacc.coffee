@@ -94,10 +94,10 @@ exports.create = () ->
 			if(res.length==0)
 				console.log("EMPTY JACC CONFIG!")
 			else
-				console.log("UNEMPTY JACC CONFIG!")
 				this.async.each(
 					res
 					(item, fn) => 
+	                    console.log("_onJaccConfig")
 						func(item, fn)
 
 					() =>
