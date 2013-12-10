@@ -186,7 +186,7 @@ exports.create = () ->
 					# decomposing, just to make sure things are ok
 					{URL, internal_port, DNS} = JSON.parse(res)
 
-					if(!this._runningImages[ image ][0]?)
+					if(!this._runningImages[ image ]?)
 						console.log("Image "+ image + "lacks running containers")
 						fn()
 					else
