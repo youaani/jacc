@@ -15,7 +15,7 @@ BUILD = $(SRC:src/%.coffee=build)
 DOCSRC = $(wildcard *.js)
 DOC = $(DOCSRC:%.js=docs/%.html)
 
-all: install build test run
+all: install build test
 
 build:
 	git pull

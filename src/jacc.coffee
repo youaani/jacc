@@ -119,22 +119,26 @@ exports.create = () ->
 				endFunc() if endFunc?
 				throw err
 
-			# inspect each running container
-			this.async.each(res, 
-				(container, fn) => 
-					_options = {}
-					docker.containers.inspect(container.Id, _options, (err, res) =>
-						if (err)
-							throw err
-						func(res)
-						fn()
-					)
+			if (res==[])
+				console.log("NO RUNNING CONTAINERS")
+				endFunc() if endFunc?
+			else
+				# inspect each running container
+				this.async.each(res, 
+					(container, fn) => 
+						_options = {}
+						docker.containers.inspect(container.Id, _options, (err, res) =>
+							if (err)
+								throw err
+							func(res)
+							fn()
+						)
 
-				() =>
-					endFunc() if endFunc?
-			)
+					() =>
+						endFunc() if endFunc?
+				)
 
-			#endFunc() if endFunc?
+				#endFunc() if endFunc?
 
 		)
 
