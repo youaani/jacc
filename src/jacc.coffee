@@ -116,6 +116,7 @@ exports.create = () ->
 		# list the running containers
 		docker.containers.list( _options, (err, res) =>
 			if (err)
+				endFunc() if endFunc?
 				throw err
 
 			# inspect each running container
@@ -132,6 +133,9 @@ exports.create = () ->
 				() =>
 					endFunc() if endFunc?
 			)
+
+			endFunc() if endFunc?
+
 		)
 
 
