@@ -97,18 +97,16 @@ exports.create = () ->
 				console.log("UNEMPTY JACC CONFIG! "+JSON.stringify(res))
 				func(res[0], endFunc)
 
-###
-				this.async.each(
-					res
-
-					(item, fn) => 
-	                    console.log("_onJaccConfig: "+item if item? else "item empty")
-						func(item, fn)
-
-					() =>
-						endFunc() if endFunc?
-				)
-###
+#				this.async.each(
+#					res
+#
+#					(item, fn) => 
+#	                    console.log("_onJaccConfig: "+item if item? else "item empty")
+#						func(item, fn)
+#
+#					() =>
+#						endFunc() if endFunc?
+#				)
 
 		)
 
