@@ -36,7 +36,8 @@ exports['test_jacc'] = {
         docker.containers.list({}, (err, res) =>
             this._helpers.logDebug('res:'+res+' err:'+err)
             test.done()
-
+        )
+        
     'test_redis_helpers': (test) =>
         # There should be X tests
         test.expect(1)
