@@ -19,7 +19,7 @@ Installation
 
 Pre-requiresites:
 
- * docker
+ * docker version 0.7.3
  * redis
  * NodeJS (preferabley managed with nvm)
  * Python
@@ -44,6 +44,13 @@ Setup containers:
  1. Do `jacc add <IMAGE_ID> <URL> <internal port> <DNS>` followed by `./jacc.sh update` to add an image and start a container. hipache and redis-dns configuration will be updated at the same time
   * STARTING CONTAINERS HAVE NOT BEEN IMPLEMENTED YET, START MANUALLY WITH `docker run -d -dns=IP IMAGE_ID`
  1. `jacc list` shows the configuration and `jacc status` the running containers
+
+
+docker configuration:
+
+docker need to be configured to open up the HTTP API. The start script needs to include this flag `DOCKER_OPTS=-H 127.0.0.1:4243`.
+For ubuntu, this is changed in `/etc/init/docker.conf`. Now the docker command line tool needs the flag `-H=tcp://127.0.0.1:4243`. Create
+an alias for simplcity: `alias docker='docker -H=tcp://127.0.0.1:4243'`. Place this in your `.profile` etc.
 
 
 Development
