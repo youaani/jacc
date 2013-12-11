@@ -220,6 +220,7 @@ exports.create = () ->
 		
 
 	list : () ->
+		console.log("Jacc: current configuration")
 		this._onJaccConfig( 
 			
 			(item, endFunc) =>
