@@ -19,7 +19,7 @@ Installation
 
 Pre-requiresites:
 
- * docker version 0.7.3
+ * docker version 0.7.1
  * redis
  * NodeJS (preferabley managed with nvm)
  * Python
