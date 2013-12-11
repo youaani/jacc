@@ -22,32 +22,28 @@ Pre-requiresites:
  * docker
  * redis
  * NodeJS (preferabley managed with nvm)
- * make - for development only
  * Python
+ * make - for development only
 
 
 Installation:
 
- 1. Clone (or download) this repo into a new folder.
- 1. Install with `npm install`
+ 1. Install with `npm install jacc -g`
  1. Then install supervisord, either using a linux package manager or simply with python package manager: `pip install supervisor`
-<<<<<<< HEAD
- 1. Update the `command` section in the file `./etc/supervisor/hipache.conf` with the path to the jacc installation
- 1. Create a redis-dns config file `cp node_modules/redis-dns/redis-dns-config.json.template node_modules/redis-dns/redis-dns-config.json`
- 1. Update the IP adress in redis-dns-config.json with the IP adress of the docker bridge (do `ifconfig|grep docker`).
-=======
- 1. Update the IP adress in the file `./etc/redis-dns-config.json` with the IP adress of the docker bridge (do `ifconfig|grep docker`).
- 1. Update the `command` section in the file `./etc/supervisor/hipache.conf` with the path to the jacc installation
- 1. Create a redis-dns config file `cp node_modules/redis-dns/redis-dns-config.json.template node_modules/redis-dns/redis-dns-config.json`
->>>>>>> a6c45f7a1facf861da86439ee75538bea8113842
- 1. Copy the hipache and redis-dns config files for supervisor and restart `sudo cp ./etc/supervisor/*.conf /etc/supervisor/conf.d/ && sudo supervisorctl reload`
+ 1. Locate the jacc installation in node_modules (typically in /usr/lib/node_modules/jacc)
+ 1. Update the `command` section in the file `JACC_HOME/etc/supervisor/hipache.conf` with the path to the jacc installation
+ 1. Update the IP adress in the file `JACC_HOME/etc/redis-dns-config.json` with the IP adress of the docker bridge (do `ifconfig|grep docker`).
+ 1. Update the `command` section in the file `JACC_HOME/etc/supervisor/hipache.conf` with the path to the jacc installation
+ 1. Create a redis-dns config file `cp JACC_HOME/node_modules/redis-dns/redis-dns-config.json.template JACC_HOME/node_modules/redis-dns/redis-dns-config.json`
+ 1. Copy the hipache and redis-dns config files for supervisor and restart `sudo cp JACC_HOME/etc/supervisor/*.conf /etc/supervisor/conf.d/ && sudo supervisorctl reload`
  1. Check that hipache and redis-dns started with `sudo supervisorctl status`
 
 
 Setup containers:
 
- 1. Do `./jacc.sh add <IMAGE_ID> <URL> <internal port> <DNS>` followed by `./jacc.sh update` to add an image and start a container. hipache and redis-dns configuration will be updated at the same time
+ 1. Do `jacc add <IMAGE_ID> <URL> <internal port> <DNS>` followed by `./jacc.sh update` to add an image and start a container. hipache and redis-dns configuration will be updated at the same time
   * STARTING CONTAINERS HAVE NOT BEEN IMPLEMENTED YET, START MANUALLY WITH `docker run -d -dns=IP IMAGE_ID`
+ 1. `jacc list` shows the configuration and `jacc status` the running containers
 
 
 Development
@@ -62,7 +58,7 @@ Run `make install` to install everything in the current directory.
 
 Jacc comes with a test suite. The first step when developing is to make sure that the test runs without any erros. 
 
-A number of environment vaiables needs to be set. You can for instance update the `./test/setenv` file showed below:
+A number of environment variables needs to be set. You can for instance use the `./test/setenv.template` file showed below:
 
 ```
 export JACC_TEST_CONTAINERID=$abcdefghijkl
