@@ -103,9 +103,12 @@
         docker = require('docker.io')(this._dockerConnOptions);
         return docker.containers.list(_options, function(err, res) {
           if (err) {
+            if (endFunc != null) {
+              endFunc();
+            }
             throw err;
           }
-          return _this.async.each(res, function(container, fn) {
+          _this.async.each(res, function(container, fn) {
             _options = {};
             return docker.containers.inspect(container.Id, _options, function(err, res) {
               if (err) {
@@ -119,6 +122,9 @@
               return endFunc();
             }
           });
+          if (endFunc != null) {
+            return endFunc();
+          }
         });
       },
       _listImages: function(endFunc) {

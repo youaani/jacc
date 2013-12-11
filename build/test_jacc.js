@@ -7,15 +7,27 @@
       _this._async = require('async');
       _this._helpers = require('helpersjs').create();
       _this._helpers.logging_threshold = _this._helpers.logging.debug;
-      _this._id = process.env.JACC_TEST_IMAGE;
-      _this._URL = process.env.JACC_TEST_URL;
-      _this._port = process.env.JACC_TEST_PORT;
-      _this._DNS = process.env.JACC_TEST_DNS;
+      _this._id = process.env.JACC_TEST_IMAGE || "000";
+      _this._URL = process.env.JACC_TEST_URL || "app1.jacc.local";
+      _this._port = process.env.JACC_TEST_PORT || 80;
+      _this._DNS = process.env.JACC_TEST_DNS || "app1.local";
       return done();
     },
     'print_warning': function(test) {
       _this._helpers.logDebug('\nWARNING: CURRENT JACC CONFIGHURATION WILL BE DELETED!');
       return test.done();
+    },
+    'test_docker_connection': function(test) {
+      var docker;
+      docker = require('docker.io')({
+        socketPath: false,
+        host: 'http://localhost',
+        port: '4243'
+      });
+      return docker.containers.list({}, function(err, res) {
+        _this._helpers.logDebug('res:' + res + ' err:' + err);
+        return test.done();
+      });
     },
     'test_redis_helpers': function(test) {
       var REDIS_KEY, REDIS_VALUE;

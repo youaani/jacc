@@ -31,6 +31,12 @@ exports['test_jacc'] = {
         this._helpers.logDebug('\nWARNING: CURRENT JACC CONFIGHURATION WILL BE DELETED!')
         test.done()
 
+    'test_docker_connection': (test) =>
+        docker = require('docker.io')({ socketPath: false, host: 'http://localhost', port: '4243'})
+        docker.containers.list({}, (err, res) =>
+            this._helpers.logDebug('res:'+JSON.stringify(res)+' err:'+err)
+            test.done()
+        )
 
     'test_redis_helpers': (test) =>
         # There should be X tests
@@ -101,9 +107,8 @@ exports['test_jacc'] = {
         # There should be X tests
         test.expect(1)
 
-        test.equal(true,  true, 'jacc update')
+        test.equal(true,  true, 'jacc list images')
 
-        this._helpers.logDebug('test_listImages')
         this._j._listImages(
             () =>
                 this._helpers.logDebug('test_listImages: Running images: '+JSON.stringify(this._j._runningImages))
@@ -122,7 +127,6 @@ exports['test_jacc'] = {
         # There should be X tests
         test.expect(1)
 
-        this._helpers.logDebug('test_buildHipacheConfig')
         this._j._listImages(
             () =>
                 this._j._buildHipacheConfig( () =>
@@ -130,8 +134,11 @@ exports['test_jacc'] = {
                     # Check that the hipache configuraiton is there
                     _key = "frontend:" + this._URL
                     this._j._redis("lrange", [_key, 0, -1], (res) =>
-                        this._helpers.logDebug('test_buildHipacheConfig hipache configuration for key '+_key+'='+JSON.stringify(res))
-                        test.equal(res[0],  this._id, 'test_buildHipacheConfig: image id')
+                        if(res.length==0)
+                            this._helpers.logDebug('test_buildHipacheConfig: EMPTY, LIKELY NO RUNNING CONTAINERS')
+                        else
+                            this._helpers.logDebug('test_buildHipacheConfig hipache configuration for key '+_key+'='+JSON.stringify(res))
+                            test.equal(res[0],  this._id, 'test_buildHipacheConfig: image id')
                         test.done()
                     )
                 )
