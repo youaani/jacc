@@ -36,8 +36,8 @@ to
 setup 
 supervisor as a service yourself)
  1. Locate the jacc installation in node_modules (typically in /usr/lib/node_modules/jacc)
- 1. Update the `command` section in the files `JACC_HOME/etc/supervisor/*.conf` with the path to the jacc installation
  1. Update the IP adress in the file `JACC_HOME/etc/redis-dns-config.json` with the IP adress of the docker bridge (do `ifconfig|grep -A 1 docker`).
+ 1. Update the `command` section in the files `JACC_HOME/etc/supervisor/*.conf` with the path to the jacc installation
  1. Copy the hipache and redis-dns config files for supervisor and restart `sudo cp JACC_HOME/etc/supervisor/*.conf /etc/supervisor/conf.d/ && sudo supervisorctl reload`
  1. Check that hipache and redis-dns started with `sudo supervisorctl status`
 
