@@ -220,7 +220,7 @@ exports.create = () ->
 		
 
 	list : () ->
-		_onJaccConfig( 
+		this._onJaccConfig( 
 			
 			(item, endFunc) =>
 				console.log(JSON.stringify(item))
