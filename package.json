@@ -1,7 +1,7 @@
 {
   "name": "jacc",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Just Another Cloud in the Cloud",
   "homepage": "https://github.com/colmsjo/jacc",
   "repository": {
@@ -18,15 +18,14 @@
     "hipache": "0.2.4",
     "redis-dns": "0.0.1",
     "redis": "0.8.4",
-    "node-docker": "*",
     "docker.io": "*",
     "optimist": "*",
     "underscore": "*",
+    "async": "*",
     "helpersjs": "*"
   },
   "devDependencies" : {
     "grunt": "*",
-    "async": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-nodeunit": "*",
     "grunt-contrib-watch": "*",
