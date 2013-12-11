@@ -1,7 +1,7 @@
 {
   "name": "jacc",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Just Another Cloud in the Cloud",
   "homepage": "https://github.com/colmsjo/jacc",
   "repository": {
@@ -36,7 +36,10 @@
     "doccoh":"0.4.1"
   },
   "keywords": [
-    "Sandbox"
+    "docker",
+    "Private cloud",
+    "LXC",
+    "linux containers"
   ],
   "license": "WTFPL",
   "preferGlobal": false
