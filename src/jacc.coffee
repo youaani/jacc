@@ -223,8 +223,11 @@ exports.create = () ->
 		this._onJaccConfig( 
 			
 			(item, endFunc) =>
-				console.log(JSON.stringify(item))
-				endFunc()
+				this._redis("get", [item], (res) =>
+
+					console.log(JSON.stringify(item)+" - "+JSON.stringify(res))
+					endFunc()
+				)
 
 			null
 		)
