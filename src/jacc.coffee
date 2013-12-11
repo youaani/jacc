@@ -213,42 +213,22 @@ exports.create = () ->
 			endFunc
 		)
 
-	_buildHipacheConfig2 : (endFunc) ->
-		# Iterate over Jacc configuration and generate hipache and redis-dns configuration
-		# hipache configuration: image id ->external URL & [internal URL]
-		# redis-dns configuration: dns->IP
-
-		this._onJaccConfig( 
-			(image, fn) =>
-				this._redis("get", [image], (res) =>
-
-					# decomposing, just to make sure things are ok
-					{URL, internal_port, DNS} = JSON.parse(res)
-
-					# Set hipache config
-					_key = "frontend:"+URL
-					this._redis("del", [_key], () =>
-						this._redis("rpush", [_key, image], () =>
-							this._.each( this._runningImages[ image ], (res) =>
-								this._redis("rpush", [ _key, 'http://'+res["IP"]+':'+internal_port ], null)
-								fn() if(fn?)
-							)
-						)
-					)
-
-					# Set redis-dns config, use the first IP in the list
-					this._redis( "set", [ DNS, this._runningImages[ image ][0]["IP"] ], null )
-					
-				)
-
-			endFunc
-		)
 
 	update : () ->
 		this._listImages( ()=>
 			this._buildHipacheConfig()
 		)
 		
+
+	list : () ->
+		_onJaccConfig( 
+			
+			(item, endFunc) =>
+				console.log(JSON.stringify(item))
+				endFunc()
+
+			null
+		)
 
 
 	# Show running containers
