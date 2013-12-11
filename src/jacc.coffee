@@ -23,7 +23,7 @@ exports.create = () ->
 	# Includes
 	# ======================================================================
 
-	node_docker : require('node-docker').create()
+#	node_docker : require('node-docker').create()
 
 	async      : require('async')
 
