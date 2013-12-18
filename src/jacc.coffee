@@ -308,7 +308,7 @@ exports.create = () ->
 			when "list" then this.list()
 
 			when "help"
-				console.log('usage: jacc ' + _commands)
+				console.log('usage: jacc ' + this._commands)
 				console.log('jacc add image URL dns-name')
 				console.log('jacc delete image')
 				console.log('jacc update')
