@@ -12,7 +12,6 @@
         host: 'http://localhost',
         port: '4243'
       },
-      node_docker: require('node-docker').create(),
       async: require('async'),
       redis: require('redis'),
       _: require('underscore'),
@@ -86,13 +85,19 @@
       _onJaccConfig: function(func, endFunc) {
         var _this = this;
         return this._redis("smembers", ["images"], function(res) {
-          return _this.async.each(res, function(item, fn) {
-            return func(item, fn);
-          }, function() {
-            if (endFunc != null) {
-              return endFunc();
-            }
-          });
+          if (res.length === 0) {
+            return console.log("EMPTY JACC CONFIG!");
+          } else {
+            return _this.async.each(res, function(item, fn) {
+              if ((item != null)) {
+                return func(item, fn);
+              }
+            }, function() {
+              if (endFunc != null) {
+                return endFunc();
+              }
+            });
+          }
         });
       },
       _onContainers: function(func, endFunc) {
@@ -108,22 +113,25 @@
             }
             throw err;
           }
-          _this.async.each(res, function(container, fn) {
-            _options = {};
-            return docker.containers.inspect(container.Id, _options, function(err, res) {
-              if (err) {
-                throw err;
-              }
-              func(res);
-              return fn();
-            });
-          }, function() {
+          if (res.length === 0) {
             if (endFunc != null) {
               return endFunc();
             }
-          });
-          if (endFunc != null) {
-            return endFunc();
+          } else {
+            return _this.async.each(res, function(container, fn) {
+              _options = {};
+              return docker.containers.inspect(container.Id, _options, function(err, res) {
+                if (err) {
+                  throw err;
+                }
+                func(res);
+                return fn();
+              });
+            }, function() {
+              if (endFunc != null) {
+                return endFunc();
+              }
+            });
           }
         });
       },
@@ -144,20 +152,25 @@
         var _this = this;
         return this._onJaccConfig(function(image, fn) {
           return _this._redis("get", [image], function(res) {
-            var DNS, URL, internal_port, _key, _ref;
+            var DNS, URL, internal_port, _ref;
             _ref = JSON.parse(res), URL = _ref.URL, internal_port = _ref.internal_port, DNS = _ref.DNS;
-            _key = "frontend:" + URL;
-            _this._redis("del", [_key], function() {
-              return _this._redis("rpush", [_key, image], function() {
-                return _this._.each(_this._runningImages[image], function(res) {
-                  _this._redis("rpush", [_key, 'http://' + res["IP"] + ':' + internal_port], null);
-                  if ((fn != null)) {
-                    return fn();
-                  }
+            if (_this._runningImages[image] == null) {
+              console.log("Image " + image + " lacks running containers");
+              return fn();
+            } else {
+              return _this._redis("set", [DNS, _this._runningImages[image][0]["IP"]], function() {
+                var _key;
+                console.log("IN _onJaccConfig,redis_get_set");
+                _key = "frontend:" + URL;
+                return _this._redis("del", [_key], function() {
+                  return _this._redis("rpush", [_key, image], function() {
+                    return _this.async.each(_this._runningImages[image], function(res, fn2) {
+                      return _this._redis("rpush", [_key, 'http://' + res["IP"] + ':' + internal_port], fn2);
+                    }, fn);
+                  });
                 });
               });
-            });
-            return _this._redis("set", [DNS, _this._runningImages[image][0]["IP"]], null);
+            }
           });
         }, endFunc);
       },
@@ -166,6 +179,16 @@
         return this._listImages(function() {
           return _this._buildHipacheConfig();
         });
+      },
+      list: function() {
+        var _this = this;
+        console.log("Jacc: current configuration");
+        return this._onJaccConfig(function(item, endFunc) {
+          return _this._redis("get", [item], function(res) {
+            console.log(JSON.stringify(item) + " - " + JSON.stringify(res));
+            return endFunc();
+          });
+        }, null);
       },
       status: function(fn) {
         var _this = this;
