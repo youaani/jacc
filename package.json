@@ -1,7 +1,7 @@
 {
   "name": "jacc",
   "private": false,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Just Another Cloud in the Cloud",
   "homepage": "https://github.com/colmsjo/jacc",
   "repository": {
@@ -41,5 +41,5 @@
     "linux containers"
   ],
   "license": "WTFPL",
-  "preferGlobal": false
+  "preferGlobal": true
 }
