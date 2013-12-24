@@ -160,7 +160,6 @@
             } else {
               return _this._redis("set", [DNS, _this._runningImages[image][0]["IP"]], function() {
                 var _key;
-                console.log("IN _onJaccConfig,redis_get_set");
                 _key = "frontend:" + URL;
                 return _this._redis("del", [_key], function() {
                   return _this._redis("rpush", [_key, image], function() {
@@ -246,7 +245,7 @@
             return this.list();
           case "help":
             console.log('usage: jacc ' + this._commands);
-            console.log('jacc add image URL dns-name');
+            console.log('jacc add image URL port dns-name (exmaple: jacc add 123456789 www.example.com 80 example.local)');
             console.log('jacc delete image');
             console.log('jacc update');
             console.log('jacc list');

@@ -190,8 +190,6 @@ exports.create = () ->
 					else
 						# Set redis-dns config, use the first IP in the list
 						this._redis( "set", [ DNS, this._runningImages[ image ][0]["IP"] ], ()=>
-							console.log("IN _onJaccConfig,redis_get_set")
-
 							# Set hipache config
 							_key = "frontend:"+URL
 							this._redis("del", [_key], () =>
@@ -309,7 +307,7 @@ exports.create = () ->
 
 			when "help"
 				console.log('usage: jacc ' + this._commands)
-				console.log('jacc add image URL dns-name')
+				console.log('jacc add image URL port dns-name (exmaple: jacc add 123456789 www.example.com 80 example.local)')
 				console.log('jacc delete image')
 				console.log('jacc update')
 				console.log('jacc list')
