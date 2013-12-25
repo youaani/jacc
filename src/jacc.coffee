@@ -254,7 +254,7 @@ exports.create = () ->
 	# TODO: Should check that the image exists (do an inspect)
 
 	add : (image, URL, internal_port, dns_name, fn) ->
-		console.log("Jacc: adding " + image)
+		console.log("Jacc: adding " + image + " - remeber to do 'jacc update'")
 
 		this._redis( "sadd", ["images", image], (res) =>
 			_args = [image, JSON.stringify({URL: URL; internal_port: internal_port; DNS: dns_name})]

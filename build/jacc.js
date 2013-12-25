@@ -198,7 +198,7 @@
       },
       add: function(image, URL, internal_port, dns_name, fn) {
         var _this = this;
-        console.log("Jacc: adding " + image);
+        console.log("Jacc: adding " + image + " - remeber to do 'jacc update'");
         return this._redis("sadd", ["images", image], function(res) {
           var _args;
           _args = [
