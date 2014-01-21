@@ -29,18 +29,20 @@ exports.create = () ->
 
 	redis      : require('redis')
 
-	_ 			: require('underscore')
+#	_ 			: require('underscore')
 
 
 	# varaibles used within async needs to be defined like this
-	_helpers     				: require('helpersjs').create()
+#	_helpers     				: require('helpersjs').create()
 
 
 	# helpers
 	# ======================================================================
 
+
 	_isset : (a, message, dontexit) ->
-	  if (!this._helpers.isset(a))
+#	  if (!this._helpers.isset(a))
+	  if (!a?)
 	    console.log(message)
 	    if(dontexit != undefined && dontexit)
 	      return false

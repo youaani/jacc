@@ -14,10 +14,8 @@
       },
       async: require('async'),
       redis: require('redis'),
-      _: require('underscore'),
-      _helpers: require('helpersjs').create(),
       _isset: function(a, message, dontexit) {
-        if (!this._helpers.isset(a)) {
+        if (a == null) {
           console.log(message);
           if (dontexit !== void 0 && dontexit) {
             return false;
