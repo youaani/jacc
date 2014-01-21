@@ -16,11 +16,10 @@
   "bin": "./jacc.sh",
   "dependencies": {
     "hipache": "0.2.4",
-    "redis-dns": "0.0.1",
+    "redis-dns": "0.0.8",
     "redis": "0.8.4",
     "docker.io": "*",
     "optimist": "*",
-    "underscore": "*",
     "async": "*"
   },
   "devDependencies" : {
