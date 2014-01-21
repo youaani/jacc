@@ -21,8 +21,7 @@
     "docker.io": "*",
     "optimist": "*",
     "underscore": "*",
-    "async": "*",
-    "helpersjs": "*"
+    "async": "*"
   },
   "devDependencies" : {
     "grunt": "*",
