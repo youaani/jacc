@@ -288,8 +288,6 @@ exports.create = () ->
 
 	main : () ->
 
-		this._helpers.logging_threshold = this._helpers.logging.debug
-
 		argv        = require('optimist')
 		              .usage('Usage: $0 '+ this._commands)
 		              .argv
