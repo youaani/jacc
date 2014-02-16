@@ -104,7 +104,7 @@
           _this = this;
         _options = {};
         this._containers = {};
-        docker = require('../vendor/docker.io')(this._dockerConnOptions);
+        docker = require('docker.io')(this._dockerConnOptions);
         return docker.containers.list(_options, function(err, res) {
           if (err) {
             if (endFunc != null) {
