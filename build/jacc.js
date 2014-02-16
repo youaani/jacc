@@ -10,7 +10,8 @@
       _dockerConnOptions: {
         socketPath: false,
         host: 'http://localhost',
-        port: '4243'
+        port: '4243',
+        version: 'v1.1'
       },
       async: require('async'),
       redis: require('redis'),
@@ -103,7 +104,7 @@
           _this = this;
         _options = {};
         this._containers = {};
-        docker = require('docker.io')(this._dockerConnOptions);
+        docker = require('../vendor/docker.io')(this._dockerConnOptions);
         return docker.containers.list(_options, function(err, res) {
           if (err) {
             if (endFunc != null) {
@@ -227,7 +228,6 @@
       },
       main: function() {
         var argv;
-        this._helpers.logging_threshold = this._helpers.logging.debug;
         argv = require('optimist').usage('Usage: $0 ' + this._commands).argv;
         this._isset(argv._, 'jacc requires a command - node app.js ' + this._commands);
         switch (argv._[0]) {

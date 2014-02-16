@@ -1,7 +1,7 @@
 {
   "name": "jacc",
   "private": false,
-  "version": "0.0.1o",
+  "version": "0.0.12",
   "description": "Just Another Cloud in the Cloud",
   "homepage": "https://github.com/colmsjo/jacc",
   "repository": {
@@ -16,7 +16,7 @@
   "bin": "./jacc.sh",
   "dependencies": {
     "hipache": "0.2.4",
-    "redis-dns": "0.0.8",
+    "redis-dns": "*",
     "redis": "0.8.4",
     "optimist": "*",
     "async": "*"
