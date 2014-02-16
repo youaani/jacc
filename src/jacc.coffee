@@ -119,7 +119,8 @@ exports.create = () ->
 		# all options listed in the REST documentation for Docker are supported.
 		_options 			= {}
 		this._containers 	= {};
-		docker 				= require('../vendor/docker.io')( this._dockerConnOptions )
+#		docker 				= require('../vendor/docker.io')( this._dockerConnOptions )
+		docker 				= require('docker.io')( this._dockerConnOptions )
 
 		# list the running containers
 		docker.containers.list( _options, (err, res) =>

@@ -1,7 +1,7 @@
 {
   "name": "jacc",
   "private": false,
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Just Another Cloud in the Cloud",
   "homepage": "https://github.com/colmsjo/jacc",
   "repository": {
@@ -19,7 +19,8 @@
     "redis-dns": "*",
     "redis": "0.8.4",
     "optimist": "*",
-    "async": "*"
+    "async": "*",
+    "docker.io":"*"
   },
   "devDependencies" : {
     "grunt": "*",
