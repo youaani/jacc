@@ -1,6 +1,6 @@
 //var clone = require('node-v8-clone').clone,
 var extend = require('util')._extend,
-    validator = require('../vednor/flat-validator'),
+    validator = require('../vendor/flat-validator'),
     parse = require('url').parse;
 
 var Endpoint = function(type, o) {
