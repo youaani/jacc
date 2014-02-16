@@ -146,7 +146,7 @@ exports.create = () ->
 						endFunc() if endFunc?
 				)
 
-				#endFunc() if endFunc?
+				endFunc() if endFunc?
 
 		)
 
