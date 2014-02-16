@@ -30,7 +30,8 @@
     "grunt-contrib-concat": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-coffee": "*",
-    "doccoh":"0.4.1"
+    "doccoh":"0.4.1",
+    "helpersjs" : "*"
   },
   "keywords": [
     "docker",
