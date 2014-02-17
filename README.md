@@ -80,3 +80,8 @@ export JACC_TEST_DNS="app1.local"
 Then do `source ./test/setenv` followed by `make` to kickoff the test suite.
 
 
+Troubleshooting
+---------------
+
+1. 'No running containers with ID: XXX' - This is most likely caused by a problem connecting to docker. Does `docker ps` and 
+`curl http://localhost:4243/containers/json` show containers?
