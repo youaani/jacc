@@ -17,7 +17,7 @@ exports = exports ? this
 exports.create = () ->
 
 	_commands          : '[add|delete|list|update|status|help]'
-	// THIS GAVE PROBLEMS? , version: 'v1.1'
+	# THIS GAVE PROBLEMS? , version: 'v1.1'
 	_dockerConnOptions : { socketPath: false, host: 'http://localhost', port: '4243'}
 
 
