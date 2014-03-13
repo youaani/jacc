@@ -317,5 +317,5 @@ exports.create = () ->
 				console.log('jacc status')
 				console.log('help: show this message')
 
-			else console.log('No such command: ' + argv._[0])
+			else console.log('No such jacc command: ' + argv._[0] + ' try jacc help!')
 

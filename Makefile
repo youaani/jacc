@@ -15,10 +15,10 @@ BUILD = $(SRC:src/%.coffee=build)
 DOCSRC = $(wildcard *.js)
 DOC = $(DOCSRC:%.js=docs/%.html)
 
-all: install build test
+all: clean install build test
 
 build:
-	git pull
+#	git pull
 	grunt
 
 # Not a very informative commit
